@@ -12,7 +12,7 @@ const AdditionalFeature = props => {
 
   console.log(props);
   return (
-    <li>
+    <li className={props.car.features.includes(props.feature) ? "added" : ""}>
       {/* Add an onClick that will let you add a feature to your car */}
       <button onClick={buyItem} className="button">
         Add

@@ -10,6 +10,11 @@ body {
   padding: 3em;
   place-items: center;
 }
+
+.added {
+  color: lightgrey;
+}
+
 .boxes {
   display: grid;
   grid-gap: 2em;
