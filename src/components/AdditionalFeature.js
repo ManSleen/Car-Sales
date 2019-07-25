@@ -4,11 +4,17 @@ import { connect } from "react-redux";
 import { buyItem } from "../actions";
 
 const AdditionalFeature = props => {
+  const buyItem = () => {
+    if (!props.car.features.includes(props.feature)) {
+      props.buyItem(props.feature);
+    }
+  };
+
   console.log(props);
   return (
     <li>
       {/* Add an onClick that will let you add a feature to your car */}
-      <button onClick={e => props.buyItem(props.feature)} className="button">
+      <button onClick={buyItem} className="button">
         Add
       </button>
       {props.feature.name} (+{props.feature.price})
@@ -16,7 +22,11 @@ const AdditionalFeature = props => {
   );
 };
 
+const mapStateToProps = state => ({
+  car: state.car
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { buyItem }
 )(AdditionalFeature);
