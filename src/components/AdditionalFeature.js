@@ -3,21 +3,20 @@ import { connect } from "react-redux";
 
 import { buyItem } from "../actions";
 
-const AdditionalFeature = props => {
-  const buyItem = () => {
-    if (!props.car.features.includes(props.feature)) {
-      props.buyItem(props.feature);
+const AdditionalFeature = ({ feature, car, buyItem }) => {
+  const handleBuyItem = () => {
+    if (!car.features.includes(feature)) {
+      buyItem(feature);
     }
   };
 
-  console.log(props);
   return (
-    <li className={props.car.features.includes(props.feature) ? "added" : ""}>
+    <li className={car.features.includes(feature) ? "added" : ""}>
       {/* Add an onClick that will let you add a feature to your car */}
-      <button onClick={buyItem} className="button">
+      <button onClick={handleBuyItem} className="button">
         Add
       </button>
-      {props.feature.name} (+{props.feature.price})
+      {feature.name} (+{feature.price})
     </li>
   );
 };
