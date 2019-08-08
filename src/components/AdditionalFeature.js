@@ -1,13 +1,31 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
 
-const AdditionalFeature = props => {
+import { buyItem } from "../actions";
+
+const AdditionalFeature = ({ feature, car, buyItem }) => {
+  const handleBuyItem = () => {
+    if (!car.features.includes(feature)) {
+      buyItem(feature);
+    }
+  };
+
   return (
-    <li>
+    <li className={car.features.includes(feature) ? "added" : ""}>
       {/* Add an onClick that will let you add a feature to your car */}
-      <button className="button">Add</button>
-      {props.feature.name} (+{props.feature.price})
+      <button onClick={handleBuyItem} className="button">
+        Add
+      </button>
+      {feature.name} (+{feature.price})
     </li>
   );
 };
 
-export default AdditionalFeature;
+const mapStateToProps = state => ({
+  car: state.car
+});
+
+export default connect(
+  mapStateToProps,
+  { buyItem }
+)(AdditionalFeature);
